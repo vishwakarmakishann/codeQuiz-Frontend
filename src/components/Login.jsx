@@ -12,11 +12,10 @@ const Login = () => {
     const handleSubmit = async (e)=>{
         e.preventDefault();
         try {
-            await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, {username:user, password:pass}, { withCredentials: true } )
-            const ses = await axios.get(`${import.meta.env.VITE_API_URL}/session`, { withCredentials: true } );
-            if(ses.data.role==="user"){
+            const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, {username:user, password:pass}, { withCredentials: true } )
+            if(res.data.role === "user") {
                 nav("/user");
-            } else if (ses.data.role==="admin"){
+            } else if(res.data.role === "admin") {
                 nav("/admin");
             }
         } catch (error) {
