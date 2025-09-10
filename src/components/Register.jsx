@@ -12,7 +12,7 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`${import.meta.env.VITE_API_URL}/auth/register`, { username:user, password:pass })
+            await axios.post(`${import.meta.env.VITE_API_URL}/auth/register`, { username:user, password:pass }, { withCredentials: true })
             nav("/login");
         } catch (error) {
             console.log(error);
